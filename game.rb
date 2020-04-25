@@ -3,10 +3,13 @@
 # Game class is the base of hangman logic
 class Game
   def play
+    @available_letters = ('a'..'z').to_a
+    @display = []
+    @turns_remaining = 8
     puts 'The random word for this game is:'
     word_selection
     display_blanks
-    player_turn
+    player_turns
   end
 
   def random_word
@@ -27,30 +30,31 @@ class Game
     puts ''
   end
 
-  def display_blanks(letter = nil)
-    @solution.each do |item|
-      if letter.nil?
-        print '_'
-      elsif item.include?(letter.downcase || letter.upcase)
-        print item
-      else
-        print '_'
-      end
-    end
-    puts ''
+  def display_blanks
+    @solution.each { @display << '_' }
+    puts @display.join
   end
 
-  def player_turn
-    # Put in initilize
-    @available_letters = ('a'..'z').to_a
-    player_guess
-    display_blanks(@player_guess)
-    @available_letters.delete(@player_guess.downcase)
-    print @available_letters
-    puts ''
+  def display_word(letter)
+    @solution.each_with_index do |item, index|
+      @display[index] = item if item.include?(letter.downcase || letter.upcase)
+    end
+    puts @display.join
+  end
+
+  def player_turns
+    loop do
+      player_guess
+      display_word(@player_guess)
+      @available_letters.delete(@player_guess.downcase)
+      print @available_letters
+      puts ''
+      break if game_over?
+    end
   end
 
   def player_guess
+    puts "You have #{@turns_remaining} turns left"
     puts 'Guess a letter'
     loop do
       @player_guess = gets.chomp
@@ -59,5 +63,12 @@ class Game
 
       puts 'You guess should only be 1 letter that has not been guessed.'
     end
+    @turns_remaining -= 1
+  end
+
+  def game_over?
+    game_end = false
+    game_end = true if @turns_remaining.zero?
+    game_end
   end
 end
