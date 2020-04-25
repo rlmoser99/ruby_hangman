@@ -49,7 +49,7 @@ class Game
       @available_letters.delete(@player_guess.downcase)
       print @available_letters
       puts ''
-      break if game_over?
+      break if game_over? || game_solved?
     end
   end
 
@@ -63,6 +63,7 @@ class Game
 
       puts 'You guess should only be 1 letter that has not been guessed.'
     end
+    # This needs to decrease only with "bad" guesses
     @turns_remaining -= 1
   end
 
@@ -70,5 +71,11 @@ class Game
     game_end = false
     game_end = true if @turns_remaining.zero?
     game_end
+  end
+
+  def game_solved?
+    word_solved = false
+    word_solved = true if @display.all? { |item| item.match?(/[a-z]/i) }
+    word_solved
   end
 end
