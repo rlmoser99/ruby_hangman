@@ -29,18 +29,23 @@ class Game
 
   def display_blanks(letter = nil)
     @solution.each do |item|
-      print '_' if item != letter
-      print letter if item == letter
+      if letter.nil?
+        print '_'
+      elsif item.include?(letter.downcase || letter.upcase)
+        print item
+      else
+        print '_'
+      end
     end
     puts ''
   end
 
   def player_turn
+    # Put in initilize
     @available_letters = ('a'..'z').to_a
     player_guess
     display_blanks(@player_guess)
-    @available_letters.reject! { |letter| letter == @player_guess }
-    # need to downcase/upcase guesses, available & word
+    @available_letters.delete(@player_guess.downcase)
     print @available_letters
     puts ''
   end
