@@ -63,8 +63,7 @@ class Game
 
       puts 'You guess should only be 1 letter that has not been guessed.'
     end
-    # This needs to decrease only with "bad" guesses
-    @turns_remaining -= 1
+    @turns_remaining -= 1 unless @solution.include?(@player_guess)
   end
 
   def game_over?
