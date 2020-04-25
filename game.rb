@@ -3,7 +3,7 @@
 # Game class is the base of hangman logic
 class Game
   def play
-    puts 'play in Game'
+    puts 'The random word for this game is:'
     select_word
   end
 
@@ -14,7 +14,10 @@ class Game
   end
 
   def select_word
-    word = random_word
-    puts word if word.length >= 5 && word.length <= 12
+    loop do
+      @word = random_word
+      break if @word.length >= 5 && @word.length <= 12
+    end
+    puts @word
   end
 end
