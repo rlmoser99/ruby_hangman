@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
+require './text_content'
+
 # Game class is the base of hangman logic
 class Game
+  include TextContent
+
   def play
     @available_letters = ('a'..'z').to_a
     @display = []
     @turns_remaining = 8
     @rejected_letters = []
-    puts 'The random word for this game is:'
+    puts game_message(:instructions)
     word_selection
     display_blanks
     player_turns
@@ -24,11 +28,9 @@ class Game
       @word = random_word
       break if @word.length >= 7 && @word.length <= 14
     end
-    puts @word
+    puts "The random word for this game is: #{@word}"
     word_array = @word.split(//)
     @solution = word_array[0..word_array.length - 3]
-    # print @solution
-    # puts ''
   end
 
   # Temporary Method to trouble-shoot
@@ -52,10 +54,9 @@ class Game
 
   def player_turns
     loop do
-      puts "Guess a letter. You have #{@turns_remaining} bad guesses left"
-      unless @rejected_letters.empty?
-        puts "Except for: #{@rejected_letters.join(' ')}"
-      end
+      # puts turn_message('guess')
+      puts game_message(:guess)
+      puts turn_message('incorrect') unless @rejected_letters.empty?
       player_guess
       display_word(@player_guess)
       @available_letters.delete(@player_guess.downcase)
@@ -71,7 +72,7 @@ class Game
       break if @player_guess.length == 1 &&
                @available_letters.include?(@player_guess.downcase)
 
-      puts 'You guess should only be 1 letter that has not been guessed.'
+      puts turn_message('error')
     end
     @letter_regex = /#{@player_guess}/i
     incorrect_guess unless @word.match(@letter_regex)
