@@ -11,7 +11,7 @@ class Game
     @display = []
     @turns_remaining = 8
     @rejected_letters = []
-    puts game_message(:instructions)
+    puts display_instructions
     word_selection
     display_blanks
     player_turns
@@ -28,9 +28,10 @@ class Game
       @word = random_word
       break if @word.length >= 7 && @word.length <= 14
     end
-    puts "The random word for this game is: #{@word}"
     word_array = @word.split(//)
     @solution = word_array[0..word_array.length - 3]
+    puts "The random word for this game is: #{@word}"
+    puts display_word_size
   end
 
   # Temporary Method to trouble-shoot
@@ -42,21 +43,21 @@ class Game
 
   def display_blanks
     @solution.each { @display << '_' }
-    puts @display.join
+    puts display_letter_spaces(@display.join)
   end
 
   def display_word(_letter)
     @solution.each_with_index do |item, index|
       @display[index] = item if item.match(@letter_regex)
     end
-    puts @display.join
+    puts display_letter_spaces(@display.join)
   end
 
   def player_turns
     loop do
-      # puts turn_message('guess')
-      puts game_message(:guess)
-      puts turn_message('incorrect') unless @rejected_letters.empty?
+      puts display_turn_prompt
+      puts display_incorrect_list unless @rejected_letters.empty?
+      puts display_last_turn_warning if @turns_remaining == 1
       player_guess
       display_word(@player_guess)
       @available_letters.delete(@player_guess.downcase)
@@ -72,7 +73,7 @@ class Game
       break if @player_guess.length == 1 &&
                @available_letters.include?(@player_guess.downcase)
 
-      puts turn_message('error')
+      puts display_turn_error
     end
     @letter_regex = /#{@player_guess}/i
     incorrect_guess unless @word.match(@letter_regex)
