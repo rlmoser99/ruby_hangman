@@ -31,14 +31,21 @@ class Game
     # puts ''
   end
 
+  # Temporary Method to trouble-shoot
+  # def word_selection
+  #   @word = 'Tests'
+  #   puts @word
+  #   @solution = @word.split(//)
+  # end
+
   def display_blanks
     @solution.each { @display << '_' }
     puts @display.join
   end
 
-  def display_word(letter)
+  def display_word(_letter)
     @solution.each_with_index do |item, index|
-      @display[index] = item if item.include?(letter.downcase || letter.upcase)
+      @display[index] = item if item.match(@letter_regex)
     end
     puts @display.join
   end
@@ -66,11 +73,14 @@ class Game
 
       puts 'You guess should only be 1 letter that has not been guessed.'
     end
-    @turns_remaining -= 1 unless @solution.include?(@player_guess)
-    @rejected_letters << @player_guess unless @solution.include?(@player_guess)
+    @letter_regex = /#{@player_guess}/i
+    incorrect_guess unless @word.match(@letter_regex)
   end
 
-  # Bug: If word has capital letter, the guessed lowercase letter does not work to solve it.
+  def incorrect_guess
+    @rejected_letters << @player_guess.downcase
+    @turns_remaining -= 1
+  end
 
   def game_over?
     game_end = false
