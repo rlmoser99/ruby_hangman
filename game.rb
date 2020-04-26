@@ -6,6 +6,7 @@ class Game
     @available_letters = ('a'..'z').to_a
     @display = []
     @turns_remaining = 8
+    @rejected_letters = []
     puts 'The random word for this game is:'
     word_selection
     display_blanks
@@ -26,8 +27,8 @@ class Game
     puts @word
     word_array = @word.split(//)
     @solution = word_array[0..word_array.length - 3]
-    print @solution
-    puts ''
+    # print @solution
+    # puts ''
   end
 
   def display_blanks
@@ -44,18 +45,20 @@ class Game
 
   def player_turns
     loop do
+      puts "Guess a letter. You have #{@turns_remaining} bad guesses left"
+      unless @rejected_letters.empty?
+        puts "Except for: #{@rejected_letters.join(' ')}"
+      end
       player_guess
       display_word(@player_guess)
       @available_letters.delete(@player_guess.downcase)
-      print @available_letters
-      puts ''
+      # print @available_letters
+      # puts ''
       break if game_over? || game_solved?
     end
   end
 
   def player_guess
-    puts "You have #{@turns_remaining} turns left"
-    puts 'Guess a letter'
     loop do
       @player_guess = gets.chomp
       break if @player_guess.length == 1 &&
@@ -64,7 +67,10 @@ class Game
       puts 'You guess should only be 1 letter that has not been guessed.'
     end
     @turns_remaining -= 1 unless @solution.include?(@player_guess)
+    @rejected_letters << @player_guess unless @solution.include?(@player_guess)
   end
+
+  # Bug: If word has capital letter, the guessed lowercase letter does not work to solve it.
 
   def game_over?
     game_end = false
