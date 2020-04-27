@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Contains any text content for the the game
-module TextContent
+module Display
   def display_word_size
     <<~HEREDOC
       \e[34mYour random word has been chosen, it has #{@solution.length} letters:\e[0m
@@ -24,7 +24,7 @@ module TextContent
   def display_turn_prompt
     <<~HEREDOC
 
-      Your turn to guess a letter. You have #{@turns_remaining} incorrect guesses remaining!
+      Your turn to guess a letter. You have #{@turns_remaining} incorrect guesses remaining.
     HEREDOC
   end
 
@@ -40,7 +40,7 @@ module TextContent
 
   def display_incorrect_list
     <<~HEREDOC
-      You have already guessed: \e[31m#{@rejected_letters.join(' ')}\e[0m
+      You have already guessed: \e[31m#{@incorrect_letters.join(' ')}\e[0m
     HEREDOC
   end
 
@@ -61,7 +61,7 @@ module TextContent
     <<~HEREDOC
 
       \e[34mCONGRATULATIONS! Yon won!\e[0m
-      You figured out the word with #{@turns_remaining} incorrect guesses remaining.
+      You figured out the word with #{@turns_remaining} incorrect guesses remaining!
 
     HEREDOC
   end
