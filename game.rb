@@ -15,6 +15,8 @@ class Game
     word_selection
     display_blanks
     player_turns
+    puts display_reveal_word if @turns_remaining.zero?
+    puts display_won_game if game_solved?
   end
 
   def random_word
@@ -30,7 +32,7 @@ class Game
     end
     word_array = @word.split(//)
     @solution = word_array[0..word_array.length - 3]
-    puts "The random word for this game is: #{@word}"
+    # puts "The random word for this game is: #{@word}"
     puts display_word_size
   end
 

@@ -47,4 +47,22 @@ module TextContent
   def display_letter_spaces(string)
     "\e[34;1m#{string}\e[0m"
   end
+
+  def display_reveal_word
+    <<~HEREDOC
+
+      The word that you were trying to solve was: \e[34m#{@word}\e[0m
+                           \e[31m¯\\_(ツ)_/¯\e[0m
+
+    HEREDOC
+  end
+
+  def display_won_game
+    <<~HEREDOC
+
+      \e[34mCONGRATULATIONS! Yon won!\e[0m
+      You figured out the word with #{@turns_remaining} incorrect guesses remaining.
+
+    HEREDOC
+  end
 end
