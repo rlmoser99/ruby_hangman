@@ -28,7 +28,7 @@ class Game
   def word_selection
     loop do
       @word = random_word
-      break if @word.length >= 7 && @word.length <= 14
+      break if @word.length.between?(7, 14)
     end
     word_array = @word.split(//)
     @solution = word_array[0..word_array.length - 3]

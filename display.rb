@@ -51,7 +51,8 @@ module Display
   def display_reveal_word
     <<~HEREDOC
 
-      The word that you were trying to solve was: \e[34m#{@word}\e[0m
+      The word that you were trying to solve was: \e[34m#{@solution.join}\e[0m
+
                            \e[31m¯\\_(ツ)_/¯\e[0m
 
     HEREDOC
