@@ -24,7 +24,7 @@ module Display
   def display_turn_prompt
     <<~HEREDOC
 
-      Your turn to guess a letter. You have #{@turns_remaining} incorrect guesses remaining.
+      Your turn to guess a letter. You have #{8 - @incorrect_letters.length} incorrect guesses remaining.
     HEREDOC
   end
 
@@ -62,7 +62,7 @@ module Display
     <<~HEREDOC
 
       \e[34mCONGRATULATIONS! Yon won!\e[0m
-      You figured out the word with #{@turns_remaining} incorrect guesses remaining!
+      You figured out the word with #{8 - @incorrect_letters.length} incorrect guesses remaining!
 
     HEREDOC
   end

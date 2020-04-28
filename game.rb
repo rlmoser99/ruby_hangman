@@ -9,13 +9,12 @@ class Game
   def play
     @available_letters = ('a'..'z').to_a
     @solved_letters = []
-    @turns_remaining = 8
     @incorrect_letters = []
     puts display_instructions
     word_selection
     create_solved_blanks
     player_turns
-    puts display_reveal_word if @turns_remaining.zero?
+    puts display_reveal_word if @incorrect_letters.length == 8
     puts display_won_game if game_solved?
   end
 
@@ -49,14 +48,18 @@ class Game
 
   def player_turns
     loop do
-      puts display_turn_prompt
-      puts display_incorrect_list unless @incorrect_letters.empty?
-      puts display_last_turn_warning if @turns_remaining == 1
+      turn_prompts
       player_guess
       update_solved_letters
       @available_letters.delete(@player_guess.downcase)
       break if game_over? || game_solved?
     end
+  end
+
+  def turn_prompts
+    puts display_turn_prompt
+    puts display_incorrect_list unless @incorrect_letters.empty?
+    puts display_last_turn_warning if @incorrect_letters.length == 7
   end
 
   def player_guess
@@ -73,11 +76,10 @@ class Game
 
   def incorrect_guess
     @incorrect_letters << @player_guess.downcase
-    @turns_remaining -= 1
   end
 
   def game_over?
-    @turns_remaining.zero?
+    @incorrect_letters.length == 8
   end
 
   def game_solved?
