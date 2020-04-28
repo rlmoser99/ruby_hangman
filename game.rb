@@ -26,11 +26,10 @@ class Game
 
   def word_selection
     loop do
-      @word = random_word
-      break if @word.length.between?(7, 14)
+      @word = random_word.strip!
+      break if @word.length.between?(5, 12)
     end
-    word_array = @word.split(//)
-    @solution = word_array[0..word_array.length - 3]
+    @solution = @word.split(//)
     puts display_word_size
   end
 
