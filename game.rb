@@ -6,11 +6,17 @@ require './display'
 class Game
   include Display
 
-  def play
+  # Have this be initialize?
+  def start
     @available_letters = ('a'..'z').to_a
     @solved_letters = []
     @incorrect_letters = []
     puts display_instructions
+    play_game
+  end
+
+  def play_game
+    user_input(display_start, /^[12]$/)
     word_selection
     create_solved_blanks
     player_turns
@@ -55,17 +61,24 @@ class Game
     end
   end
 
+  def user_input(prompt, regex)
+    loop do
+      print prompt
+      input = gets.chomp
+      input.match(regex) ? (return input) : print(display_input_warning)
+    end
+  end
+
   def turn_prompts
-    puts display_turn_prompt
+    # puts display_turn_prompt
     puts display_incorrect_list unless @incorrect_letters.empty?
     puts display_last_turn_warning if @incorrect_letters.length == 7
   end
 
   def player_guess
     loop do
-      @player_guess = gets.chomp
-      break if @player_guess.length == 1 &&
-               @available_letters.include?(@player_guess.downcase)
+      @player_guess = user_input(display_turn_prompt, /^[a-z]$/)
+      break if @available_letters.include?(@player_guess.downcase)
 
       puts display_turn_error
     end
@@ -75,6 +88,7 @@ class Game
 
   def incorrect_guess
     @incorrect_letters << @player_guess.downcase
+    puts display_incorrect_guess
   end
 
   def game_over?

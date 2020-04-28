@@ -24,7 +24,8 @@ module Display
   def display_turn_prompt
     <<~HEREDOC
 
-      Your turn to guess a letter. You have #{8 - @incorrect_letters.length} incorrect guesses remaining.
+      Your turn to guess a letter in the secret word, or you can 'save' or 'exit' the game.
+
     HEREDOC
   end
 
@@ -40,6 +41,7 @@ module Display
 
   def display_incorrect_list
     <<~HEREDOC
+
       You have already guessed: \e[31m#{@incorrect_letters.join(' ')}\e[0m
     HEREDOC
   end
@@ -63,6 +65,31 @@ module Display
 
       \e[34mCONGRATULATIONS! Yon won!\e[0m
       You figured out the word with #{8 - @incorrect_letters.length} incorrect guesses remaining!
+
+    HEREDOC
+  end
+
+  def display_start
+    <<~HEREDOC
+      Let's play hangman in the console! Would you like to:
+
+      \e[34m[1]\e[0m Play a new game
+      \e[34m[2]\e[0m Load a saved game
+
+    HEREDOC
+  end
+
+  def display_input_warning
+    <<~HEREDOC
+      \e[31mSorry, that is an invalid answer. Please review instructions for valid answers.\e[0m
+
+    HEREDOC
+  end
+
+  def display_incorrect_guess
+    <<~HEREDOC
+      '#{@player_guess}' is not in the secret word.
+      There are #{8 - @incorrect_letters.length} incorrect guesses remaining.
 
     HEREDOC
   end
