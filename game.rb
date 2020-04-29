@@ -6,22 +6,35 @@ require './display'
 class Game
   include Display
 
-  # Have this be initialize?
-  def start
+  def initialize
     @available_letters = ('a'..'z').to_a
     @solved_letters = []
     @incorrect_letters = []
-    puts display_instructions
     play_game
   end
 
   def play_game
-    user_input(display_start, /^[12]$/)
-    word_selection
-    create_solved_blanks
+    puts display_instructions
+    game_type = user_input(display_start, /^[12]$/)
+    new_game if game_type == '1'
+    load_game if game_type == '2'
     player_turns
     puts display_reveal_word if @incorrect_letters.length == 8
     puts display_won_game if game_solved?
+  end
+
+  def new_game
+    word_selection
+    create_solved_blanks
+  end
+
+  def load_game
+    puts 'This is the load_game method'
+    @word = 'saved'
+    @solution = @word.split(//)
+    @available_letters = ('b'..'y').to_a
+    @solved_letters = %w[_ a _ _ _]
+    @incorrect_letters = ['z']
   end
 
   def random_word
@@ -36,23 +49,22 @@ class Game
       break if @word.length.between?(5, 12)
     end
     @solution = @word.split(//)
-    puts display_word_size
   end
 
   def create_solved_blanks
     @solution.each { @solved_letters << '_' }
-    puts display_letter_spaces(@solved_letters.join)
+    puts display_word_size
   end
 
   def update_solved_letters
     @solution.each_with_index do |item, index|
       @solved_letters[index] = item if item.match(@letter_regex)
     end
-    puts display_letter_spaces(@solved_letters.join)
   end
 
   def player_turns
     loop do
+      puts display_letter_spaces(@solved_letters.join)
       turn_prompts
       player_guess
       update_solved_letters
@@ -70,14 +82,13 @@ class Game
   end
 
   def turn_prompts
-    # puts display_turn_prompt
     puts display_incorrect_list unless @incorrect_letters.empty?
     puts display_last_turn_warning if @incorrect_letters.length == 7
   end
 
   def player_guess
     loop do
-      @player_guess = user_input(display_turn_prompt, /^[a-z]$/)
+      @player_guess = user_input(display_turn_prompt, /^[a-z]$/i)
       break if @available_letters.include?(@player_guess.downcase)
 
       puts display_turn_error

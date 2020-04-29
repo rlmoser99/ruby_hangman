@@ -47,7 +47,11 @@ module Display
   end
 
   def display_letter_spaces(string)
-    "\e[34;1m#{string}\e[0m"
+    <<~HEREDOC
+
+      \e[34;1m#{string}\e[0m
+
+    HEREDOC
   end
 
   def display_reveal_word
@@ -63,8 +67,10 @@ module Display
   def display_won_game
     <<~HEREDOC
 
-      \e[34mCONGRATULATIONS! Yon won!\e[0m
-      You figured out the word with #{8 - @incorrect_letters.length} incorrect guesses remaining!
+      \e[34;1m#{@word}\e[0m
+
+      CONGRATULATIONS! Yon won!
+      You figured out the secret word, with #{8 - @incorrect_letters.length} incorrect guesses remaining!
 
     HEREDOC
   end
