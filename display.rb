@@ -23,9 +23,7 @@ module Display
 
   def display_turn_prompt
     <<~HEREDOC
-
       Your turn to guess a letter in the secret word, or you can 'save' or 'exit' the game.
-
     HEREDOC
   end
 
@@ -51,6 +49,7 @@ module Display
 
       \e[34;1m#{string}\e[0m
 
+
     HEREDOC
   end
 
@@ -59,7 +58,7 @@ module Display
 
       The word that you were trying to solve was: \e[34m#{@solution.join}\e[0m
 
-                           \e[31m¯\\_(ツ)_/¯\e[0m
+      \e[31m¯\\_(ツ)_/¯\e[0m
 
     HEREDOC
   end
@@ -70,7 +69,7 @@ module Display
       \e[34;1m#{@word}\e[0m
 
       CONGRATULATIONS! Yon won!
-      You figured out the secret word, with #{8 - @incorrect_letters.length} incorrect guesses remaining!
+      You figured out the secret word, with #{8 - @incorrect_letters.length} incorrect guess(es) remaining!
 
     HEREDOC
   end
@@ -87,15 +86,15 @@ module Display
 
   def display_input_warning
     <<~HEREDOC
-      \e[31mSorry, that is an invalid answer. Please review instructions for valid answers.\e[0m
+      \e[31mSorry, that is an invalid answer. Please, try again.\e[0m
 
     HEREDOC
   end
 
   def display_incorrect_guess
     <<~HEREDOC
-      '#{@player_guess}' is not in the secret word.
-      There are #{8 - @incorrect_letters.length} incorrect guesses remaining.
+      Sorry, '#{@player_guess}' is not in the secret word.
+      You have #{8 - @incorrect_letters.length} incorrect guess(es) left.
 
     HEREDOC
   end

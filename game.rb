@@ -19,13 +19,22 @@ class Game
     new_game if game_type == '1'
     load_game if game_type == '2'
     player_turns
-    puts display_reveal_word if @incorrect_letters.length == 8
-    puts display_won_game if game_solved?
+    end_game
   end
 
   def new_game
-    word_selection
+    loop do
+      @word = random_word.strip!
+      break if @word.length.between?(5, 12)
+    end
+    @solution = @word.split(//)
     create_solved_blanks
+  end
+
+  def random_word
+    lines = IO.readlines('5desk.txt')
+    random_number = rand * lines.length.to_i
+    lines[random_number]
   end
 
   def load_game
@@ -35,20 +44,6 @@ class Game
     @available_letters = ('b'..'y').to_a
     @solved_letters = %w[_ a _ _ _]
     @incorrect_letters = ['z']
-  end
-
-  def random_word
-    lines = IO.readlines('5desk.txt')
-    random_number = rand * lines.length.to_i
-    lines[random_number]
-  end
-
-  def word_selection
-    loop do
-      @word = random_word.strip!
-      break if @word.length.between?(5, 12)
-    end
-    @solution = @word.split(//)
   end
 
   def create_solved_blanks
@@ -65,7 +60,6 @@ class Game
   def player_turns
     loop do
       puts display_letter_spaces(@solved_letters.join)
-      turn_prompts
       player_guess
       update_solved_letters
       @available_letters.delete(@player_guess.downcase)
@@ -81,13 +75,9 @@ class Game
     end
   end
 
-  def turn_prompts
-    puts display_incorrect_list unless @incorrect_letters.empty?
-    puts display_last_turn_warning if @incorrect_letters.length == 7
-  end
-
   def player_guess
     loop do
+      optional_turn_info
       @player_guess = user_input(display_turn_prompt, /^[a-z]$/i)
       break if @available_letters.include?(@player_guess.downcase)
 
@@ -95,6 +85,11 @@ class Game
     end
     @letter_regex = /#{@player_guess}/i
     incorrect_guess unless @word.match(@letter_regex)
+  end
+
+  def optional_turn_info
+    puts display_incorrect_list unless @incorrect_letters.empty?
+    puts display_last_turn_warning if @incorrect_letters.length == 7
   end
 
   def incorrect_guess
@@ -108,5 +103,11 @@ class Game
 
   def game_solved?
     @solved_letters.all? { |item| item.match?(/[a-z]/i) }
+  end
+
+  def end_game
+    puts display_reveal_word if game_over?
+    puts display_won_game if game_solved?
+    puts 'Would you like to save your score and compare it to other scores?'
   end
 end
