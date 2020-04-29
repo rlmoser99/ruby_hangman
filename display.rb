@@ -66,7 +66,7 @@ module Display
   def display_won_game
     <<~HEREDOC
 
-      \e[34;1m#{@word}\e[0m
+      \e[34;1m#{word}\e[0m
 
       CONGRATULATIONS! Yon won!
       You figured out the secret word, with #{8 - @incorrect_letters.length} incorrect guess(es) remaining!

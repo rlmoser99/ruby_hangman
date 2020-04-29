@@ -1,0 +1,37 @@
+---
+word: conjuror
+available_letters:
+- a
+- b
+- c
+- d
+- f
+- g
+- h
+- i
+- j
+- k
+- m
+- o
+- p
+- q
+- u
+- v
+- w
+- x
+- y
+- z
+solved_letters:
+- _
+- _
+- n
+- _
+- _
+- r
+- _
+- r
+incorrect_letters:
+- s
+- t
+- l
+- e
