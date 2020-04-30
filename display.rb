@@ -40,7 +40,7 @@ module Display
   def display_incorrect_list
     <<~HEREDOC
 
-      You have already guessed: \e[31m#{@incorrect_letters.join(' ')}\e[0m
+      You have already guessed: \e[31m#{incorrect_letters.join(' ')}\e[0m
     HEREDOC
   end
 
@@ -69,7 +69,7 @@ module Display
       \e[34;1m#{word}\e[0m
 
       CONGRATULATIONS! Yon won!
-      You figured out the secret word, with #{8 - @incorrect_letters.length} incorrect guess(es) remaining!
+      You figured out the secret word, with #{8 - incorrect_letters.length} incorrect guess(es) remaining!
 
     HEREDOC
   end
@@ -94,7 +94,7 @@ module Display
   def display_incorrect_guess
     <<~HEREDOC
       Sorry, '#{@player_guess}' is not in the secret word.
-      You have #{8 - @incorrect_letters.length} incorrect guess(es) left.
+      You have #{8 - incorrect_letters.length} incorrect guess(es) left.
 
     HEREDOC
   end
