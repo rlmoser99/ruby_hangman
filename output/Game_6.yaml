@@ -1,0 +1,33 @@
+---
+word: allover
+available_letters:
+- b
+- c
+- d
+- f
+- g
+- h
+- j
+- k
+- m
+- p
+- q
+- u
+- v
+- w
+- x
+- y
+- z
+solved_letters:
+- a
+- l
+- l
+- o
+- _
+- e
+- r
+incorrect_letters:
+- s
+- t
+- n
+- i

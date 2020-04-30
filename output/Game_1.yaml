@@ -1,5 +1,5 @@
 ---
-word: conjuror
+word: nebulizer
 available_letters:
 - a
 - b
@@ -22,16 +22,15 @@ available_letters:
 - y
 - z
 solved_letters:
-- _
-- _
 - n
+- e
 - _
 - _
-- r
+- l
 - _
+- _
+- e
 - r
 incorrect_letters:
 - s
 - t
-- l
-- e

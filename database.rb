@@ -3,13 +3,14 @@
 # Contains methods to save or load a game
 module Database
   def save_game
-    filename = "Saved_at_#{Time.now.strftime('%-I:%M:%S%p_on_%-m-%-d-%y')}.yaml"
     Dir.mkdir 'output' unless Dir.exist? 'output'
-    File.open("output/#{filename}", 'w') { |file| file.write state_to_yaml }
-    puts "Your game's name is: #{filename}"
+    game_count = Dir.glob('output/**/*.yaml').count
+    @filename = "Game_#{game_count + 1}.yaml"
+    File.open("output/#{@filename}", 'w') { |file| file.write save_to_yaml }
+    puts display_saved_name
   end
 
-  def state_to_yaml
+  def save_to_yaml
     YAML.dump(
       'word' => @word,
       'available_letters' => @available_letters,
@@ -19,18 +20,27 @@ module Database
   end
 
   def saved_file
-    puts 'File number and file name:'
-    file_list.each_with_index { |name, index| puts "[#{index + 1}] #{name}" }
-    file_number = user_input('pick a file', /^[1-#{file_list.length}]$/).to_i
-    file_list[file_number - 1]
+    show_file_list
+    file_number = user_input(display_saved_prompt, /\d+/)
+    file_list[file_number.to_i - 1]
+  end
+
+  def show_file_list
+    puts display_saved_games('#', 'File Name(s)')
+    file_list.each_with_index do |name, index|
+      puts display_saved_games((index + 1).to_s, name.to_s)
+    end
   end
 
   def file_list
     files = []
     Dir.entries('output').each do |name|
-      files << name if name.match(/(Saved_at)/)
+      files << name if name.match(/(Game)/)
     end
-    files
+    sorted_files = files.sort_by do |file|
+      file.scan(/\d+/).map(&:to_i)
+    end
+    sorted_files
   end
 
   def load_game
@@ -40,8 +50,9 @@ module Database
     @available_letters = file['available_letters']
     @solved_letters = file['solved_letters']
     @incorrect_letters = file['incorrect_letters']
+    player_turns
+    end_game
   rescue StandardError
-    puts "\nLoading game failed.\n\n"
-    puts 'Would you like to play again?'
+    puts display_load_error
   end
 end

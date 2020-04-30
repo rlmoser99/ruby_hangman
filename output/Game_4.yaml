@@ -1,16 +1,10 @@
 ---
-word: snickeringly
+word: landscaping
 available_letters:
-- a
 - b
-- c
-- d
 - f
-- g
 - h
-- i
 - j
-- k
 - m
 - o
 - p
@@ -19,20 +13,22 @@ available_letters:
 - v
 - w
 - x
-- y
 - z
 solved_letters:
-- s
-- n
-- _
-- _
-- _
-- e
-- r
-- _
-- n
-- _
 - l
+- a
+- n
+- d
+- s
+- c
+- a
 - _
+- i
+- n
+- g
 incorrect_letters:
+- r
 - t
+- e
+- y
+- k

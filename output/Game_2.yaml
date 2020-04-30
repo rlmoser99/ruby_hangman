@@ -1,0 +1,37 @@
+---
+word: needlepoint
+available_letters:
+- a
+- b
+- c
+- d
+- f
+- g
+- h
+- j
+- k
+- m
+- o
+- p
+- q
+- u
+- v
+- w
+- x
+- y
+- z
+solved_letters:
+- n
+- e
+- e
+- _
+- l
+- e
+- _
+- _
+- i
+- n
+- t
+incorrect_letters:
+- r
+- s

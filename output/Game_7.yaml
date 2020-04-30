@@ -1,0 +1,36 @@
+---
+word: narcotism
+available_letters:
+- a
+- b
+- c
+- d
+- f
+- g
+- h
+- i
+- j
+- k
+- m
+- o
+- p
+- q
+- u
+- v
+- w
+- x
+- y
+- z
+solved_letters:
+- n
+- _
+- r
+- _
+- _
+- t
+- _
+- s
+- _
+incorrect_letters:
+- l
+- e

@@ -23,7 +23,8 @@ module Display
 
   def display_turn_prompt
     <<~HEREDOC
-      Your turn to guess a letter in the secret word, or you can 'save' or 'exit' the game.
+      Your turn to guess one letter in the secret word.
+      You can also type 'save' or 'exit' to leave the game.
     HEREDOC
   end
 
@@ -95,6 +96,36 @@ module Display
     <<~HEREDOC
       Sorry, '#{@player_guess}' is not in the secret word.
       You have #{8 - incorrect_letters.length} incorrect guess(es) left.
+
+    HEREDOC
+  end
+
+  def display_saved_name
+    <<~HEREDOC
+      Your game is now saved. The name of the game is: \e[34m#{@filename}\e[0m
+
+    HEREDOC
+  end
+
+  def display_saved_games(number, name)
+    <<~HEREDOC
+
+      \e[34m[#{number}]\e[0m #{name}
+    HEREDOC
+  end
+
+  def display_saved_prompt
+    <<~HEREDOC
+
+      Enter the game \e[34m[#]\e[0m that you would like to play.
+
+    HEREDOC
+  end
+
+  def display_load_error
+    <<~HEREDOC
+
+      \e[31mSorry, there was an error while loading that file number.\e[0m
 
     HEREDOC
   end

@@ -1,25 +1,20 @@
 ---
-word: obscurantist
+word: acromegalic
 available_letters:
 - a
 - b
 - c
 - d
-- e
 - f
 - g
 - h
 - i
 - j
 - k
-- l
 - m
-- n
 - o
 - p
 - q
-- s
-- t
 - u
 - v
 - w
@@ -29,14 +24,16 @@ available_letters:
 solved_letters:
 - _
 - _
-- _
-- _
-- _
 - r
 - _
 - _
+- e
 - _
 - _
+- l
 - _
 - _
-incorrect_letters: []
+incorrect_letters:
+- s
+- t
+- n

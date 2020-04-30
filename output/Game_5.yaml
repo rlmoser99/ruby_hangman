@@ -1,0 +1,35 @@
+---
+word: evolutionist
+available_letters:
+- b
+- c
+- d
+- f
+- g
+- h
+- j
+- k
+- m
+- p
+- q
+- u
+- w
+- x
+- y
+- z
+solved_letters:
+- e
+- v
+- o
+- l
+- _
+- t
+- i
+- o
+- n
+- i
+- s
+- t
+incorrect_letters:
+- r
+- a

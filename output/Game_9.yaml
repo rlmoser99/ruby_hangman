@@ -1,0 +1,35 @@
+---
+word: dotted
+available_letters:
+- a
+- b
+- c
+- d
+- f
+- g
+- h
+- i
+- j
+- k
+- m
+- o
+- p
+- q
+- u
+- v
+- w
+- x
+- y
+- z
+solved_letters:
+- _
+- _
+- t
+- t
+- e
+- _
+incorrect_letters:
+- r
+- s
+- l
+- n

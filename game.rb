@@ -22,8 +22,6 @@ class Game
     game_type = user_input(display_start, /^[12]$/)
     new_game if game_type == '1'
     load_game if game_type == '2'
-    player_turns
-    end_game
   end
 
   def new_game
@@ -33,6 +31,8 @@ class Game
     end
     @solution = word.split(//)
     create_solved_blanks
+    player_turns
+    end_game
   end
 
   def random_word
