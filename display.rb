@@ -118,6 +118,7 @@ module Display
     <<~HEREDOC
 
       Enter the game \e[34m[#]\e[0m that you would like to play.
+      You can also type 'exit' to leave the game.
 
     HEREDOC
   end
@@ -125,7 +126,7 @@ module Display
   def display_load_error
     <<~HEREDOC
 
-      \e[31mSorry, there was an error while loading that file number.\e[0m
+      There was either an error while loading the game, or you wanted to exit the game.
 
     HEREDOC
   end

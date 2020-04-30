@@ -1,5 +1,5 @@
 ---
-word: acromegalic
+word: chameleon
 available_letters:
 - a
 - b
@@ -24,16 +24,14 @@ available_letters:
 solved_letters:
 - _
 - _
-- r
 - _
 - _
 - e
-- _
-- _
 - l
+- e
 - _
-- _
+- n
 incorrect_letters:
+- r
 - s
 - t
-- n

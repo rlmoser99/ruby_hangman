@@ -1,18 +1,15 @@
 ---
-word: nebulizer
+word: footed
 available_letters:
-- a
 - b
 - c
 - d
 - f
 - g
 - h
-- i
 - j
 - k
 - m
-- o
 - p
 - q
 - u
@@ -22,15 +19,16 @@ available_letters:
 - y
 - z
 solved_letters:
-- n
-- e
 - _
-- _
-- l
-- _
-- _
-- e
-- r
-incorrect_letters:
-- s
+- o
+- o
 - t
+- e
+- _
+incorrect_letters:
+- r
+- s
+- l
+- n
+- a
+- i

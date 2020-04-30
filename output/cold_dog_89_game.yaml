@@ -1,10 +1,16 @@
 ---
-word: landscaping
+word: smidgen
 available_letters:
+- a
 - b
+- c
+- d
 - f
+- g
 - h
+- i
 - j
+- k
 - m
 - o
 - p
@@ -13,22 +19,17 @@ available_letters:
 - v
 - w
 - x
+- y
 - z
 solved_letters:
-- l
-- a
-- n
-- d
 - s
-- c
-- a
 - _
-- i
+- _
+- _
+- _
+- e
 - n
-- g
 incorrect_letters:
 - r
 - t
-- e
-- y
-- k
+- l

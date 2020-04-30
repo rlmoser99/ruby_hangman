@@ -1,15 +1,18 @@
 ---
-word: allover
+word: redeploy
 available_letters:
+- a
 - b
 - c
 - d
 - f
 - g
 - h
+- i
 - j
 - k
 - m
+- o
 - p
 - q
 - u
@@ -19,15 +22,15 @@ available_letters:
 - y
 - z
 solved_letters:
-- a
-- l
-- l
-- o
+- r
+- e
 - _
 - e
-- r
+- _
+- l
+- _
+- _
 incorrect_letters:
 - s
 - t
 - n
-- i
