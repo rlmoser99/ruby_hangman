@@ -1,7 +1,6 @@
 ---
-word: chameleon
+word: leaderless
 available_letters:
-- a
 - b
 - c
 - d
@@ -22,16 +21,16 @@ available_letters:
 - y
 - z
 solved_letters:
-- _
-- _
-- _
-- _
-- e
 - l
 - e
+- a
 - _
-- n
-incorrect_letters:
+- e
 - r
+- l
+- e
 - s
+- s
+incorrect_letters:
 - t
+- n

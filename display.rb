@@ -69,8 +69,7 @@ module Display
 
       \e[34;1m#{word}\e[0m
 
-      CONGRATULATIONS! Yon won!
-      You figured out the secret word, with #{8 - incorrect_letters.length} incorrect guess(es) remaining!
+      CONGRATULATIONS! You figured out the secret word, with #{8 - incorrect_letters.length} incorrect guess(es) remaining!
 
     HEREDOC
   end
@@ -127,6 +126,25 @@ module Display
     <<~HEREDOC
 
       There was either an error while loading the game, or you wanted to exit the game.
+
+    HEREDOC
+  end
+
+  def display_play_again
+    <<~HEREDOC
+
+      Would you like to play again?
+
+      \e[34m[1]\e[0m yes
+      \e[34m[2]\e[0m no
+
+    HEREDOC
+  end
+
+  def display_thanks
+    <<~HEREDOC
+
+      \e[34mThanks for playing Hangman!\e[0m
 
     HEREDOC
   end

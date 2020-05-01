@@ -30,7 +30,7 @@ class Game
       break if word.length.between?(5, 12)
     end
     @solution = word.split(//)
-    create_solved_blanks
+    create_letter_blanks
     player_turns
     end_game
   end
@@ -41,7 +41,7 @@ class Game
     lines[random_number]
   end
 
-  def create_solved_blanks
+  def create_letter_blanks
     @solution.each { solved_letters << '_' }
     puts display_word_size
   end
@@ -58,13 +58,13 @@ class Game
       player_guess_letter
       break if @player_guess.length > 1
 
-      round_update
+      turn_updates
       break if game_over? || game_solved?
     end
     save_game if @player_guess == 'save'
   end
 
-  def round_update
+  def turn_updates
     incorrect_guess unless word.match(@letter_regex)
     update_solved_letters if word.match(@letter_regex)
     available_letters.delete(@player_guess.downcase)
@@ -111,6 +111,8 @@ class Game
   def end_game
     puts display_reveal_word if game_over?
     puts display_won_game if game_solved?
-    puts 'Would you like to save your score and compare it to other scores?'
+    play_again = user_input(display_play_again, /^[1-2]$/)
+    puts display_thanks if play_again == '2'
+    Game.new if play_again == '1'
   end
 end

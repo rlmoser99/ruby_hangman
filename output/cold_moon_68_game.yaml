@@ -1,5 +1,5 @@
 ---
-word: smidgen
+word: dilapidation
 available_letters:
 - a
 - b
@@ -8,11 +8,9 @@ available_letters:
 - f
 - g
 - h
-- i
 - j
 - k
 - m
-- o
 - p
 - q
 - u
@@ -22,14 +20,19 @@ available_letters:
 - y
 - z
 solved_letters:
-- s
+- _
+- i
+- l
 - _
 - _
+- i
 - _
 - _
-- e
+- t
+- i
+- o
 - n
 incorrect_letters:
 - r
-- t
-- l
+- s
+- e
