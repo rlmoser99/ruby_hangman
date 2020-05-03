@@ -48,8 +48,8 @@ module Database
   def load_game
     find_saved_file
     load_saved_file
-    File.delete("output/#{@saved_game}") if File.exist?("output/#{@saved_game}")
     player_turns
+    File.delete("output/#{@saved_game}") if File.exist?("output/#{@saved_game}")
     end_game
   rescue StandardError
     puts display_load_error

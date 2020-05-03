@@ -25,10 +25,7 @@ class Game
   end
 
   def new_game
-    loop do
-      @word = random_word.strip!
-      break if word.length.between?(5, 12)
-    end
+    @word = random_word
     @solution = word.split(//)
     create_letter_blanks
     player_turns
@@ -36,9 +33,9 @@ class Game
   end
 
   def random_word
-    lines = IO.readlines('5desk.txt')
-    random_number = rand * lines.length.to_i
-    lines[random_number]
+    word_list = IO.readlines('5desk.txt')
+    word_list.each(&:strip!).select { |word| word.length.between?(5, 12) }
+    word_list[rand(0..word_list.length)]
   end
 
   def create_letter_blanks

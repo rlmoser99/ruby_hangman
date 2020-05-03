@@ -1,15 +1,18 @@
 ---
-word: footed
+word: dismemberment
 available_letters:
+- a
 - b
 - c
 - d
 - f
 - g
 - h
+- i
 - j
 - k
 - m
+- o
 - p
 - q
 - u
@@ -20,15 +23,17 @@ available_letters:
 - z
 solved_letters:
 - _
-- o
-- o
-- t
+- _
+- s
+- _
 - e
 - _
-incorrect_letters:
+- _
+- e
 - r
-- s
-- l
+- _
+- e
 - n
-- a
-- i
+- t
+incorrect_letters:
+- l

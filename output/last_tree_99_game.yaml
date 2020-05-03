@@ -1,5 +1,5 @@
 ---
-word: dilapidation
+word: midwinter
 available_letters:
 - a
 - b
@@ -8,9 +8,11 @@ available_letters:
 - f
 - g
 - h
+- i
 - j
 - k
 - m
+- o
 - p
 - q
 - u
@@ -21,18 +23,14 @@ available_letters:
 - z
 solved_letters:
 - _
-- i
-- l
 - _
 - _
-- i
 - _
 - _
-- t
-- i
-- o
 - n
-incorrect_letters:
-- r
-- s
+- t
 - e
+- r
+incorrect_letters:
+- s
+- l
