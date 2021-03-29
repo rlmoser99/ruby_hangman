@@ -1,5 +1,5 @@
 # ruby_Hangman
-This project is part of the [The Odin Project](https://www.theodinproject.com/courses/ruby-programming/lessons/file-i-o-and-serialization)'s Ruby curriculum. 
+This project is part of the [The Odin Project](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-programming/lessons/file-i-o-and-serialization-ruby-programming)'s Ruby curriculum. 
 
 ## Instructions
 This Hangman game selects a word between 5-12 letters long from a [text file](https://www.scrapmaker.com/view/twelve-dicts/5desk.txt). On each turn, you can guess one letter. To win, you must find all the letters in the word before using 8 incorrect guesses.
